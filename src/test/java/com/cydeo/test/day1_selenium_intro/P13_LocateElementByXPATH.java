@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class P12_LocateElementByCSS {
+public class P13_LocateElementByXPATH {
     public static void main(String[] args) {
         //set up chrome and create WebDriver instance
         WebDriverManager.chromedriver().setup();
@@ -20,17 +20,16 @@ public class P12_LocateElementByCSS {
         driver.get("https://google.com");
 
         //search for cydeo
-        WebElement searchBox =driver.findElement(By.cssSelector("input[name='q']"));
+        WebElement searchBox = driver.findElement(By.xpath("//input[@name='q']"));
         searchBox.sendKeys("cydeo"+ Keys.ENTER);
 
-        //verify Cydeo linkText is appeared in the result
-        WebElement cydeoText = driver.findElement(By.cssSelector("a[href='https://cydeo.com/']>h3"));
+        //verify Cydeo linkText is appeared in the results
+        WebElement cydeoText = driver.findElement(By.xpath("//h3[.='Cydeo']"));
         if(cydeoText.getText().equals("Cydeo")){
-            System.out.println("Cydeo text is passed");
+            System.out.println("Cydeo text is appeared");
         }else{
-            System.out.println("Cydeo text is failed");
+            System.out.println("Cydeo text is did not appear");
         }
-
 
         //close the browser
         driver.quit();
